@@ -1,3 +1,86 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ============ */
+
+:root {
+  --theme-color: darkseagreen;
+}
+
+a:visited{
+  color: black;
+}
+
+h1{
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.25em;
+}
+h2{
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+p{
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+p.detail{
+  color: grey;
+  font-size:small;
+  padding-left: 0.5em
+}
+button{
+  cursor: pointer
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +88,223 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: gainsboro;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app{
+  position: relative
+}
+
+.post{
+  padding: 1em .5em 1em .5em;
+  border: 1px solid grey;
+  margin-bottom: 5px;
+  background-color: white;
+  border-radius: 0 0 10px 0;
+}
+
+.comment{
+  border: 1px solid grey;
+  border-left: 5px solid grey;
+  margin: 10px;
+  padding: 5px;
+}
+
+.tag{
+  padding: 4px;
+  background-color: darkseagreen;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 1px 1px 1px grey;
+  cursor: pointer;
+}
+
+button.A{
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.flex-row{
+  display: flex;
+}
+
+.flex-col{
+  display: flex;
+  flex-direction: column
+}
+
+.align-base{
+  align-items: baseline;
+}
+
+button.button{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+.window-topper{
+  background-color: var(--theme-color);
+  height: 20px;
+  border: 1px solid grey;
+  border-bottom: none;
+}
+
+.window-body{
+  border: 1px solid grey; 
+  padding: 5px; 
+  box-shadow: 3px 3px 3px grey;
+}
+
+.form-group{
+  margin-top: 10px;
+}
+
+.form-group label, .form-group div label{
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+.form-group textarea{
+  width: 99%;
+  resize: none
+}
+
+#tag-select{
+  position: absolute;
+  box-shadow: 3px 3px 3px grey;
+  background-color: white;
+  border: 1px solid grey;
+  padding: 10px; 
+  border-radius: 10px;
+}
+
+.tag-option{
+  border-bottom: 1px solid grey;
+  border-right: 1px solid grey;
+}
+
+.tag-option,
+.tag-option div,
+.tag-option label,
+.tag-option input{
+  cursor: pointer
+}
+
+#top-nav{
+  padding: 5px 10px 5px 10px;
+  display: block;
+  background-color: var(--theme-color);
+  border: 1px solid grey;
+  text-align: right;
+}
+
+#login{
+  text-align: left;
+  width: 230px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  border: 1px solid black;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px grey;
+}
+
+#login input{
+  width: 97%
+}
+
+#admin{
+  padding: 5px; 
+  background-color: white;
+  border: 1px solid grey;
+}
+
+#admin #wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+}
+ 
+#admin #wrapper #left{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px;
+  flex-grow: 1
+}
+
+#admin #wrapper #right{
+  padding: 5px;
+  margin: auto;
+  flex-grow: 10;
+}
+
+.menu-item{
+  padding: 5px;
+  list-style-position: inside;
+  list-style-type: circle;
+}
+
+.menu-item.current{
+  list-style-type: disc;
+}
+
+.stub .left{
+  width: 15%;
+  display: flex; 
+  flex-direction: "column";
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+  margin: 0px 0px 5px 5px;
+  border: 1px solid grey;
+  border-right: none;
+}
+.stub .right{
+  text-align: left;
+  width: 85%;
+}
+
+.pad{
+  padding: 5px;
+}
+.space{
+  margin: 5px;
+}
+.pad-left{
+  padding-left: 5px;
+}
+.space-left{
+  margin-left: 5px;
+}
+.pad-right{
+  padding-right: 5px;
+}
+.space-right{
+  margin-right: 5px;
+}
+.right{
+  display: block;
+  text-align: right;
+}
+.center{
+  text-align: center
+}
+.red{
+  color: red;
 }
