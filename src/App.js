@@ -12,6 +12,7 @@ import {
 import TopNav from './TopNav';
 import Home from './Home';
 import Admin from './Admin';
+import SignUp from './SignUp';
 
 
 export default function App() {
@@ -47,6 +48,10 @@ export default function App() {
               ? < Admin />
               : <Redirect to = "/"/>
           }}>
+          </Route>
+
+          <Route path="/sign-up">
+            <SignUp/>
           </Route>
           
           <Route path="/">

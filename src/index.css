@@ -280,6 +280,12 @@ button.button{
   width: 85%;
 }
 
+#sign-up{
+  background-color: white;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
 .pad{
   padding: 5px;
 }
@@ -307,4 +313,7 @@ button.button{
 }
 .red{
   color: red;
+}
+.green{
+  color: green;
 }

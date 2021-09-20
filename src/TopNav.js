@@ -45,7 +45,14 @@ function TopNav(props){
 
     return <div id="top-nav">
         <div>{menu}</div>
-        { showForm ? <LoginForm me={me} setMe={setMe} toggle={toggleFormVisibility}/> : null}
+        { showForm 
+                ? <LoginForm 
+                    me={me} 
+                    setMe={setMe} 
+                    toggle={toggleFormVisibility} 
+                    setShowForm={setShowForm}
+                  /> 
+                : null}
     </div>
 
 }
@@ -54,7 +61,7 @@ export default withRouter(TopNav)
 
 function LoginForm(props){
 
-    const {me, setMe, toggle} = props;
+    const {me, setMe, toggle, setShowForm} = props;
 
     const [username, setUsername] = useState(""); //it's an email address
     const [password, setPassword] = useState("");
@@ -108,7 +115,7 @@ function LoginForm(props){
             <button className="button" onClick={login}>Submit</button>
         </div>
         <p className="detail right">
-            <A>Sign Up</A>
+            <Link onClick={()=>setShowForm(false)} to="/sign-up"><A>Sign Up</A></Link>
         </p>
     </div>
 
