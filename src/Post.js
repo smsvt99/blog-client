@@ -7,7 +7,7 @@ import A from './A';
 
 export default function Post(props){
 
-    const { post, stub } = props;
+    const { post, stub, me } = props;
     const { user } = post;
 
     const edited = post.createdAt !== post.updatedAt;
@@ -22,29 +22,30 @@ export default function Post(props){
                     <hr/>
                     <p>{post.body}</p>
                     <hr/>
-                    <Comments postId = {post._id}/> 
+                    <Comments me={me} postId = {post._id}/> 
                 </div>
                 : null
             }
         </div>
 }
 
-function Comments(props){
+function Comments(props){ 
 
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
 
     useEffect(()=> {
-        (async function getComments(){
-            if(showComments){
-                const _comments = await new ServiceCaller("GET", "/comments")
-                    .setQueryParams(["post_id", props.postId])
-                    .call();
-                setComments(_comments)
-            }  
-        })();
-
+        if(showComments){
+            getComments();
+        }
     }, [showComments])
+
+    async function getComments(){
+        const _comments = await new ServiceCaller("GET", "/comments")
+            .setQueryParams(["post_id", props.postId])
+            .call();
+        setComments(_comments)
+    }
 
     function loadComments(e){
         setShowComments(true);
@@ -56,11 +57,16 @@ function Comments(props){
 
     if(showComments){
         return <div>
-        {comments.map(comment => <Comment comment={comment} />)}
-        <A onClick={hideComments}>Hide Comments</A>
+        {props.me.isLoggedIn ? <NewCommentInput postId={props.postId} getComments={getComments}/> : <p className="detail">Log in to leave a comment</p>}
+        {comments.length ? <div> {comments.map(comment => <Comment comment={comment} me={props.me}/>)}</div> : <p className="detail">No comments yet</p>}
+        <div className="right">
+            <A onClick={hideComments}>Hide Comments</A>
+        </div>
     </div>
     } else {
-        return <A onClick={loadComments}>Load Comments</A>
+        return <div className="right">
+            <A onClick={loadComments}>Load Comments</A>
+        </div>
     }
 }
 
@@ -76,15 +82,48 @@ function Comment(props){
             <p className="detail">{timeStamp(comment.createdAt)}</p>
         </div>
         { edited ? <p className="detail">Edited {timeStamp(comment.updatedAt)}</p> : null }
-        <hr/>
         <p>{comment.body}</p>
+    </div>
+}
+
+function NewCommentInput(props){
+    const [newComment, setNewComment] = useState("");
+    const [showFailure, setShowFailure] = useState(false);
+
+    function onNewCommentChange(e){
+        setNewComment(e.target.value);
+    }
+
+    async function submit(){
+        const res = await new ServiceCaller("POST", "/comments")
+            .setBody({
+                body: newComment,
+                postId: props.postId
+            })
+            .call();
+        if(res.success){
+            setNewComment("");
+            setShowFailure(false)
+            props.getComments();
+        } else {
+            setShowFailure(true);
+        }
+    }
+
+    return <div className="form-group">
+        <label>New Comment</label>
+        {showFailure && <p className="red center">Unable to save comment</p>}
+        <textarea rows="5" value={newComment} onChange={onNewCommentChange}/>
+        <div className="right">
+            <button onClick={submit}>Submit</button>
+        </div>
     </div>
 }
 
 
 function Tags(props){
     const { tags } = props;
-    return <div clasName = "flex-row">
+    return <div className = "flex-row">
         {tags.map(tag => <Tag tag={tag} key={tag._id}/>)}
     </div>
 }

@@ -20,21 +20,21 @@ export default function App() {
   // const [me, setMe] = useState({isLoggedIn: true, role: "ADMIN"})
   
   const [posts, setPosts] = useState(null);
-  const [tags, setTags] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [comments, setComments] = useState([]);
+  // const [tags, setTags] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   const appState = {
     me: me,
-    setMe: setMe,
+    // setMe: setMe,
     posts: posts,
     setPosts: setPosts,
-    tags: tags,
-    setTags: setTags,
-    users: users,
-    setUsers: setUsers,
-    comments: comments,
-    setComments: setComments
+    // tags: tags,
+    // setTags: setTags,
+    // users: users,
+    // setUsers: setUsers,
+    // comments: comments,
+    // setComments: setComments
   }
 
   return (

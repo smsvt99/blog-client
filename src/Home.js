@@ -6,7 +6,7 @@ import Post from './Post';
 import ServiceCaller from './ServiceCaller';
 
 export default function Home(props) {
-    const { posts, setPosts } = props.appState;
+    const { posts, setPosts, me } = props.appState;
   
   
     useEffect(() => {
@@ -16,6 +16,6 @@ export default function Home(props) {
         })();
     }, [setPosts])
   
-    return posts ? posts.map(post => <Post post={post} stub={false} key={post._id}/>) 
+    return posts ? posts.map(post => <Post post={post} stub={false} key={post._id} me={me}/>) 
                  : "loading....";
   }

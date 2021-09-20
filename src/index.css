@@ -107,10 +107,13 @@ body {
 }
 
 .comment{
-  border: 1px solid grey;
-  border-left: 5px solid grey;
-  margin: 10px;
+  /* border: 1px solid grey; */
+  border-left: 5px solid var(--theme-color);
+  margin: 5px;
+  margin-left: 0;
   padding: 5px;
+  /* background-color: gainsboro; */
+  box-shadow: 1px 1px 1px grey;
 }
 
 .tag{
@@ -304,6 +307,12 @@ button.button{
 .space-right{
   margin-right: 5px;
 }
+.pad-top{
+  padding-top: 5px;
+}
+.pad-bottom{
+  padding-bottom: 5px;
+}
 .right{
   display: block;
   text-align: right;
@@ -316,4 +325,7 @@ button.button{
 }
 .green{
   color: green;
+}
+.grey{
+  background-color: gainsboro;
 }
