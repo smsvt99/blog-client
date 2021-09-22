@@ -62,7 +62,7 @@ function Stub(props){
 
     }
 
-    return <div className="flex-row stub">
+    return <div className="flex- stub">
         <div className="left">
             <A onClick={edit}>Edit</A>
             <A additionalClasses="red" onClick={remove}>Delete</A>
