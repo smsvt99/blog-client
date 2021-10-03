@@ -18,7 +18,7 @@ export default function SignUp(props){
         setPassword1(e.target.value)
     }
     function onPassword2Change(e){
-        setPassword2(e.target.change)
+        setPassword2(e.target.value)
     }
     function onEmailChange(e){
         setEmail(e.target.value)
